@@ -1,0 +1,27 @@
+{
+  "name": "coffee-trivia-2.0",
+  "version": "1.0.0",
+  "description": "coffee-themed trivia game using Tailwind CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leaf-junkie/Coffee-Trivia-2.0.git"
+  },
+  "keywords": [
+    "coffee",
+    "trivia",
+    "settimeout"
+  ],
+  "author": "Julie Ragsdale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leaf-junkie/Coffee-Trivia-2.0/issues"
+  },
+  "homepage": "https://github.com/leaf-junkie/Coffee-Trivia-2.0#readme",
+  "dependencies": {
+    "tailwind": "^4.0.0"
+  }
+}

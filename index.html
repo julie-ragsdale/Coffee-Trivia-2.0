@@ -1,0 +1,108 @@
+<!Doctype html>
+
+<html lang="en">
+    <head>
+        <title>Trivia</title>
+
+        <!-- Link to CSS -->
+        <!-- <link href="assets/css/reset.css" rel="stylesheet" type="text/css"/> -->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Custom Fonts -->
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Comfortaa|Fascinate|Righteous');
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header class="page-header">
+            <h1 class="header">Comfy Coffee Trivia</h1>
+            <p class="header">You have 15 seconds to answer each question</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div class="intro-screen">
+            <div class="intro">
+                <h1 class="intro-text">Comfy Coffee Trivia</h1>
+                <h2 class="intro-text">A timed trivia game on the world's most beloved drink!</h2>
+                <h2 class="intro-text">You have 15 seconds to answer each question.</h2>
+                <br>
+                <!-- TODO: Center button on screen -->
+                <div class="play-button">
+                    <button id="playButton">Play</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trivia Content -->
+        <section id="mainDisplay">
+            
+            <!-- Trivia Question -->
+            <header id="triviaQuestion">
+                <h2 id="question">Question</h2>
+            </header>
+
+            <!-- Trivia Choices -->
+            <div id="triviaOptions">
+                <div class="options" ><button id="option0" value="0" class="option-button">Option0</button></div>
+                <div class="options" ><button id="option1" value="1" class="option-button">Option1</button></div>
+                <div class="options" ><button id="option2" value="2" class="option-button">Option2</button></div>
+                <div class="options" ><button id="option3" value="3" class="option-button">Option3</button></div>
+            </div>
+
+            <!-- Display image and message after each question right -->
+            <div id="rightAnswer">
+                <p id="goodJob">Good job!</p>
+                <img class="objImage"/>
+            </div>
+
+            <!-- Display image and message after each question wrong -->
+            <div id="wrongAnswer">
+                <p id="incorrect">Nope!</p>
+                <img class="objImage"/>
+                <p class="showCorrect">The correct answer is: </p>
+            </div>
+
+            <!-- Display image and message after time runs out -->
+            <div id="timeIsUp">
+                <p id="outOfTime">Your time is up!</p>
+                <img class="objImage"/>
+                <p class="showCorrect">The correct answer is: </p>
+            </div>
+        </div>
+        </section>
+
+        <!-- Timer -->
+        <aside id="timer">
+            <h2 class="timer">Timer</h2>
+            <p class="timer" id="countdown">15 s</p>
+        </aside>
+        
+        <!-- End Screen -->
+        <div id="gameOverPosition">
+            <div id="gameOverScreen">
+                <h1 class="game-over-text">Comfy Coffee Trivia</h1>
+                <h2 class="game-over-text">Nice going, you finished the game! Let's see how you did.</h2>
+                <div>
+                    <h2 class="game-over-text">Score</h2>
+                    <p id="right"></p>
+                    <p id="wrong"></p>
+                    <p id="timeRanOut"></p>
+                </div>
+                <br>
+                <div class="play-button">
+                    <button id="playAgain">Play Again?</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">Julie Ragsdale | © 2019</footer>
+    </body>
+
+    <!-- Link to jQuery and JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</html>
