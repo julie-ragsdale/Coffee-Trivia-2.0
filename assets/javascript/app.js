@@ -89,7 +89,7 @@ $('document').ready(function() {
     let numOfWrongGuesses = 0;
     let numOfTimesRunOut = 0;
 
-    const questionTime = 15;
+    const questionTime = 30;
     const delay = 5;
 
     // G A M E P L A Y
