@@ -97,7 +97,11 @@ $('document').ready(function() {
     //////////////////////
 
     // When Play button is clicked, game loads
-    $('#playButton').on('click', nextQuestion);
+    $('#playButton').on('click', function() {
+        nextQuestion();
+        $('#playButton').hide();
+        $('#timer').show();
+    });
 
     // Load question
     function nextQuestion() {
@@ -163,12 +167,12 @@ $('document').ready(function() {
             clearInterval(lastTimer);
         }
         timeRemaining = questionTime; 
-        $('#countdown').text(timeRemaining + ' s');
+        $('#countdown').text(timeRemaining);
         
         // After 1 s, this decrements the time remaining
         lastTimer = setInterval(function() { 
             timeRemaining--;
-            $('#countdown').text(timeRemaining + ' s');
+            $('#countdown').text(timeRemaining);
 
             // If out of time...
             if (timeRemaining <= 0) {

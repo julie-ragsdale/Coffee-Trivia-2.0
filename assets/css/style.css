@@ -9,7 +9,6 @@ body {
     top: 0;
 }
 
-h1,
 h4 {
     position: relative;
     line-height: 150%;
@@ -80,7 +79,7 @@ p {
 #rightAnswer,
 #wrongAnswer {
     position: absolute;
-    width: 100%;
+    width: 50%;
     top: 0;
     background-color: #333333;
     color: #ffffff;
@@ -95,10 +94,19 @@ p {
 }
 
 #timer {
-    background-color: #ffffff;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
     text-align: center;
-    position: relative;
-    box-shado: 0 2px 4px;
+    background-color: rgb(218, 93, 71);
+    color: #fff;
+}
+
+#countdown {
+    padding-top: 20px;
+    font-size: 42px;
+    font-weight: 600;
 }
 
 #footer {
