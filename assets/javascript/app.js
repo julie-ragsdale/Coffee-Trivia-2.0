@@ -89,20 +89,44 @@ $('document').ready(function() {
     let numOfWrongGuesses = 0;
     let numOfTimesRunOut = 0;
 
-    const questionTime = 30;
+    const questionTime = 15;
     const delay = 5;
 
-    // G A M E P L A Y
+      //////////////////////
+     // G A M E P L A Y  //
+    //////////////////////
 
     // When Play button is clicked, game loads
     $('#playButton').on('click', nextQuestion);
 
+    // Load question
+    function nextQuestion() {
+        if (questionIndex >= triviaObjects.length) {
+            showScores();
+        } else {            
+            // Reset countdown timer,
+            startTimer();
+                        
+            // Hide right/wrong message and image
+            $('#rightAnswer').css({display: 'none'});
+            $('#wrongAnswer').css({display: 'none'});
+
+            // Display question and choices
+            console.log(triviaObjects[questionIndex].question);
+            $('#question').text(triviaObjects[questionIndex].question);
+            $('#option0').text(triviaObjects[questionIndex].options[0]);
+            $('#option1').text(triviaObjects[questionIndex].options[1]);
+            $('#option2').text(triviaObjects[questionIndex].options[2]);
+            $('#option3').text(triviaObjects[questionIndex].options[3]);
+        }
+    }
+    
     // Click event handler
     $('.option-button').click(function() {
         let userChoice = $(this).text();
         let correctAnswer = triviaObjects[questionIndex].answer;
         
-        // Duplication can be prevented here in the future (aka refactoring!)
+        // Duplication can be prevented here in the future
 
         // If answer is correct...
         if (userChoice === correctAnswer) {
@@ -112,11 +136,11 @@ $('document').ready(function() {
             numOfRightGuesses++;
             questionIndex++;
             // Delay question here
-            const delayQuestion = setTimeout(function() {
+            // setTimeout(function() {
                 nextQuestion();
-            }, delay * 1000);
+            // }, delay * 1000);
             
-            // If answer is incorrect...
+        // If answer is incorrect...
         } else {
             // Display message and relevant image and reveal correct answer
             $('#wrongAnswer').css({visibility: 'visible'});
@@ -125,38 +149,12 @@ $('document').ready(function() {
             numOfWrongGuesses++;
             questionIndex++;
             // Delay question here
-            setTimeout(function(){
+            // setTimeout(function(){
                 nextQuestion();
-            }, delay * 1000);
+            // }, delay * 1000);
         }
     });
         
-    // Load question
-    function nextQuestion() {
-        if (questionIndex >= triviaObjects.length) {
-            showScores();
-        } else {
-            console.log(`Moving to question ${questionIndex}`);
-            
-            // Reset countdown timer,
-            startTimer();
-            
-            // Hide start screen
-            $('.intro-screen').css({visibility: 'hidden'});
-            
-            // Hide right/wrong message and image
-            $('#rightAnswer').css({visibility: 'hidden'});
-            $('#wrongAnswer').css({visibility: 'hidden'});
-
-            // Display question and choices
-            $('#question').text(triviaObjects[questionIndex].question);
-            $('#option0').text(triviaObjects[questionIndex].options[0]);
-            $('#option1').text(triviaObjects[questionIndex].options[1]);
-            $('#option2').text(triviaObjects[questionIndex].options[2]);
-            $('#option3').text(triviaObjects[questionIndex].options[3]);
-        }
-    }
-
     // Timer
     let timeRemaining;
     let lastTimer;
@@ -210,7 +208,6 @@ $('document').ready(function() {
 
     // If the player clicks "play again" button, reset all values
     function gameOver() {
-        console.log('test')
         $('#gameOverPosition').css({visibility: 'hidden'});
         $('#gameOverScreen').css({visibility: 'hidden'});
         
@@ -220,6 +217,4 @@ $('document').ready(function() {
         numOfTimesRunOut = 0;
         nextQuestion();
     }
-
-// End ready
 });
