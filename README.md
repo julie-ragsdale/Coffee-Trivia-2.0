@@ -1,7 +1,7 @@
 # Coffee-Trivia-2.0
 Updated style of my original Comfy Coffee Trivia game, featuring better aesthetics with Bulma!
 
-Link to site: 
+Link to site: https://leaf-junkie.github.io/Coffee-Trivia-2.0/
 
 Link to portfolio: https://leaf-junkie.github.io/
 
