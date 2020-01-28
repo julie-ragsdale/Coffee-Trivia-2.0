@@ -16,8 +16,7 @@ h4 {
     color: #333333;
 }
 
-#playButton,
-#playAgain {
+#playButton {
     width: fit-content;
     padding: 24px;
     margin: 0 auto;
@@ -33,6 +32,7 @@ h4 {
 
 .hero {
     margin-bottom: 4vh;
+    height: 300px;
 }
 
 .box {
@@ -75,15 +75,23 @@ p {
     font-size: 24px;
 }
 
+.answerBlock {
+    min-height: fit-content;
+    margin: 0 auto;
+}
+
 #timeIsUp,
 #rightAnswer,
 #wrongAnswer {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
     width: 50%;
     top: 0;
     background-color: #333333;
     color: #ffffff;
-    visibility: hidden;
+    display: none;
     border-radius: 25px;
 }
 

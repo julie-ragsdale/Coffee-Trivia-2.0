@@ -6,13 +6,13 @@ $('document').ready(function() {
             question: 'Which country is the greatest producer of coffee?',
             answer: 'Brazil',
             options: ['Brazil', 'Indonesia', 'Costa Rica', 'The U.S.'],
-            image: 'https://muddydogcoffee.com/wp-content/uploads/2017/03/brazilian-coffee-berries-being-harvested.-source-viralgecko.com_-600x600.jpg'
+            image: 'https://previews.123rf.com/images/mattiaath/mattiaath1511/mattiaath151100079/48723988-geographical-map-of-brazil-covered-by-a-background-of-roasted-coffee-beans-this-nation-is-the-first-.jpg'
         },
         {
             question: 'What is an Americano?',
             answer: 'Espresso diluted with water',
             options: ['Espresso diluted with water','Espresso with a splash of cream','Two shots of espresso','Weak coffee'],
-            image: 'https://i.pinimg.com/originals/f0/b8/8f/f0b88ffc82c1127b4e56b7952791f5e5.jpg'
+            image: 'https://coffeedorks.com/wp-content/uploads/2019/02/americano-vs-latte-.jpg'
         },
         {
             question: 'A cappuccino is an espresso-based drink. What is the ratio of its components?',
@@ -66,7 +66,7 @@ $('document').ready(function() {
             question: 'Why is coffee roasted?',
             answer: 'To provide them with flavor and aroma',
             options: ['To provide them with flavor and aroma', 'To activate the caffeine', 'To make them safe to consume', 'To burn off the excess caffeine'],
-            image: 'https://driftaway.coffee/wp-content/uploads/2015/08/shutterstock_182457260-min.jpg'
+            image: 'http://www.percasso.com/wp-content/uploads/2016/03/Roasted-Coffee-cooling-3.jpg'
         },
         {
             question: 'What is an affogato?',
@@ -89,8 +89,8 @@ $('document').ready(function() {
     let numOfWrongGuesses = 0;
     let numOfTimesRunOut = 0;
 
-    const questionTime = 15;
-    const delay = 5;
+    const questionTime = 10;
+    const delay = 3;
 
       //////////////////////
      // G A M E P L A Y  //
@@ -98,6 +98,7 @@ $('document').ready(function() {
 
     // When Play button is clicked, game loads
     $('#playButton').on('click', function() {
+        $('.collection').show();
         nextQuestion();
         $('#playButton').hide();
         $('#timer').show();
@@ -107,55 +108,62 @@ $('document').ready(function() {
     function nextQuestion() {
         if (questionIndex >= triviaObjects.length) {
             showScores();
-        } else {            
-            // Reset countdown timer,
-            startTimer();
-                        
+        } else {           
             // Hide right/wrong message and image
-            $('#rightAnswer').css({display: 'none'});
-            $('#wrongAnswer').css({display: 'none'});
+            $('#rightAnswer').css({'display': 'none'});
+            $('#wrongAnswer').css({'display': 'none'});
+            
+            // Display question and set of answers
+            $('.questionsAndAnswers').show();
 
             // Display question and choices
-            console.log(triviaObjects[questionIndex].question);
             $('#question').text(triviaObjects[questionIndex].question);
             $('#option0').text(triviaObjects[questionIndex].options[0]);
             $('#option1').text(triviaObjects[questionIndex].options[1]);
             $('#option2').text(triviaObjects[questionIndex].options[2]);
             $('#option3').text(triviaObjects[questionIndex].options[3]);
+
+            // Reset countdown timer
+            startTimer();
         }
     }
     
     // Click event handler
+    // TODO: This bit of code could be less redundant
     $('.option-button').click(function() {
         let userChoice = $(this).text();
         let correctAnswer = triviaObjects[questionIndex].answer;
         
-        // Duplication can be prevented here in the future
+        $('.answerBlock').css({'display': 'block'});
 
-        // If answer is correct...
         if (userChoice === correctAnswer) {
+            $('#countdown').text('-');
+
             // Display message and relevant image
-            $('#rightAnswer').css({visibility: 'visible'});
+            $('#rightAnswer').css({'display': 'block'});
             $('.objImage').attr('src', triviaObjects[questionIndex].image);
             numOfRightGuesses++;
             questionIndex++;
-            // Delay question here
-            // setTimeout(function() {
+
+            // Delay question
+            setTimeout(function() {
                 nextQuestion();
-            // }, delay * 1000);
-            
-        // If answer is incorrect...
-        } else {
-            // Display message and relevant image and reveal correct answer
-            $('#wrongAnswer').css({visibility: 'visible'});
+            }, delay * 1000);
+        } 
+        else {
+            $('#countdown').text('-');
+
+            // Display message, correct answer, and relevant image 
+            $('#wrongAnswer').css({'display': 'block'});
             $('.objImage').attr('src', triviaObjects[questionIndex].image);
-            $('.showCorrect').text('The correct answer is: ' + correctAnswer);
+            $('.showCorrect').text(`The correct answer is: ${correctAnswer}`);
             numOfWrongGuesses++;
             questionIndex++;
-            // Delay question here
-            // setTimeout(function(){
+            
+            // Delay question
+            setTimeout(function(){
                 nextQuestion();
-            // }, delay * 1000);
+            }, delay * 1000);
         }
     });
         
@@ -177,19 +185,24 @@ $('document').ready(function() {
             // If out of time...
             if (timeRemaining <= 0) {
 
-                // Display message and relevant image and reveal correct answer
+                // Hide question and answers
+                $('.questionsAndAnswers').hide();
+
+                // Display correct answer with image
+                $('.answerBlock').css({'display': 'block'});
+                $('#timeIsUp').css({'display': 'block'});
                 $('.objImage').attr('src', triviaObjects[questionIndex].image);
-                $('#timeIsUp').css({visibility: 'visible'});
-                $('.showCorrect').text('The correct answer is: ' + triviaObjects[questionIndex].answer);
+                $('.showCorrect').text(`Correct answer: ${triviaObjects[questionIndex].answer}`);
                 numOfTimesRunOut++;
                 questionIndex++;
 
                 clearInterval(lastTimer);
-                // Delay question here
+
+                // Delay question
                 const delayQuestion = setTimeout(function() {
                     nextQuestion();
                     clearTimeout(delayQuestion);
-                    $('#timeIsUp').css({visibility: 'hidden'});
+                    $('#timeIsUp').css({'visibility': 'hidden'});
                 }, delay * 1000);
             }
         }, 1000);
@@ -198,23 +211,32 @@ $('document').ready(function() {
     // After each question, check if the game is over
     // If the game is over...
     function showScores() {
+        // Hide main content
+        $('.container #questionBox').css({'visibility':'hidden'});
+
+        // Stop the timer
+        $('#countdown').text('0');
+
+        // Replace timer with play button
+        $('#playButton').show();
+        $('#timer').hide();
+
         //  Show scores
-        $('#gameOverPosition').css({visibility: 'visible'});
-        $('#gameOverScreen').css({visibility: 'visible'});
-        $('#right').text('Number of Questions Right: ' + numOfRightGuesses);
-        $('#wrong').text('Number of Questions Wrong: ' + numOfWrongGuesses);
-        $('#timeRanOut').text('Times you ran out of time: ' + numOfTimesRunOut);   
-        console.log('Youve answered all of the questions. Lets see how you did!');
+        $('#gameOverPosition').css({'visibility': 'visible'});
+        $('#gameOverScreen').css({'visibility': 'visible'});
+        $('#right').text(`Right: ${numOfRightGuesses}`);
+        $('#wrong').text(`Wrong: ${numOfWrongGuesses}`);
+        $('#timeRanOut').text(`Out of time: ${numOfTimesRunOut}`);   
         
         // Reset the game without reloading the page
-        $('#playAgain').click(gameOver);
+        $('#playButton').click(gameOver);
     }
 
-    // If the player clicks "play again" button, reset all values
+    // Reset all values if player chooses to play again
     function gameOver() {
-        $('#gameOverPosition').css({visibility: 'hidden'});
-        $('#gameOverScreen').css({visibility: 'hidden'});
-        
+        $('#gameOverPosition').css({'visibility': 'hidden'});
+        $('#gameOverScreen').css({'visibility': 'hidden'});
+        $('#questionBox').css({'visibility':'visible'})
         questionIndex = 0;
         numOfRightGuesses = 0;
         numOfWrongGuesses = 0;

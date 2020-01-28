@@ -16,7 +16,7 @@
     <body>
 
         <!-- Start Screen -->
-        <section class="hero is-medium is-dark is-bold intro-screen">
+        <section class="hero is-dark is-bold intro-screen">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">Comfy Coffee Trivia</h1>
@@ -33,14 +33,13 @@
 
         <!-- Main Content -->
         <div class="container">
-            <div class="row">
-                <div class="box">
+            <section class="box" id="questionBox">
+                <aside class="questionsAndAnswers">
                     <!-- Question -->
-                    <div class="card-content">
-                        <span class="card-title" id="question">Press <code>START</code> to begin</span>
-                    </div>
+                    <p class="card-title" id="question">Press <code>START</code> to begin</p>
+                    <br>
                     <!-- Choices -->
-                    <aside class="collection">
+                    <div class="collection" style="display: none;">
                         <a class="button is-rounded option-button" id="option0" value="0"></a>
                         <br><br>
                         <a class="button is-rounded option-button" id="option1" value="1"></a>
@@ -49,48 +48,44 @@
                         <br><br>
                         <a class="button is-rounded option-button" id="option3" value="3"></a>
                         <br><br>
-                    </aside>
-                </div>
-            </div>
+                    </div>
+                </aside>
+                <aside class="answerBlock">
+                    <div class="row">
 
-            <section>
-                <div class="row">
-                    <!-- Display image and message after each question right -->
-                    <div id="rightAnswer">
-                        <p id="goodJob">Correct!</p>
-                        <img class="objImage"/>
+                        <div id="rightAnswer">
+                            <p id="rightAnswerText">Correct!</p>
+                            <img class="objImage"/>
+                        </div>
+
+                        <div id="wrongAnswer">
+                            <p id="wrongAnswerText">Nope!</p>
+                            <img class="objImage"/>
+                            <p class="showCorrect">The correct answer is: </p>
+                        </div>
+
+                        <div id="timeIsUp">
+                            <p id="timeIsUpText">Your time is up!</p>
+                            <img class="objImage"/>
+                            <p class="showCorrect">The correct answer is: </p>
+                        </div>
                     </div>
-                    <!-- Display image and message after each question wrong -->
-                    <div id="wrongAnswer">
-                        <p id="incorrect">Nope!</p>
-                        <img class="objImage"/>
-                        <p class="showCorrect">The correct answer is: </p>
-                    </div>
-                    <!-- Display image and message after time runs out -->
-                    <div id="timeIsUp">
-                        <p id="outOfTime">Your time is up!</p>
-                        <img class="objImage"/>
-                        <p class="showCorrect">The correct answer is: </p>
-                    </div>
-                </div>
+                </aside>
             </section>
         </div>
         
         <!-- Game Over Screen -->
         <div id="gameOverPosition">
             <div id="gameOverScreen">
-                <h1 class="game-over-text">Comfy Coffee Trivia</h1>
-                <h2 class="game-over-text">Nice going, you finished the game! Let's see how you did.</h2>
+                <h2 class="game-over-text">Game over</h2>
+                <hr>
                 <div>
-                    <h2 class="game-over-text">Score</h2>
+                    <h3 class="game-over-text">Score</h3>
                     <p id="right"></p>
                     <p id="wrong"></p>
                     <p id="timeRanOut"></p>
                 </div>
                 <br>
-                <div class="play-button">
-                    <button id="playAgain">Play</button>
-                </div>
             </div>
         </div>
 
